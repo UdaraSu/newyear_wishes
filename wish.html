@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+  <meta charset="UTF-8">
+  <title>🎁 Awurudu Surprise</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala&display=swap');
+
+    body {
+      font-family: 'Noto Sans Sinhala', sans-serif;
+      background: linear-gradient(to bottom right, #fff8e1, #ffebee);
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-image: url('https://www.icegif.com/wp-content/uploads/2023/11/icegif-142.gif');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .container {
+      text-align: center;
+      z-index: 2;
+      animation: fadeInUp 1.5s ease-out;
+    }
+
+    .gift-box {
+      width: 180px;
+      height: 180px;
+      background-image: url('https://parspng.com/wp-content/uploads/2022/02/giftboxpng.parspng.com-8.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      margin: 0 auto;
+      animation: bounce 2s infinite;
+      cursor: pointer;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    .click-text {
+      margin-top: 20px;
+      font-size: 1.2em;
+      color: #6a1b9a;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+
+    .giftbox-page {
+      background-color: #ffccf9;
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 30px;
+      box-sizing: border-box;
+    }
+
+    .explosion-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100vw;
+      background-image: url('https://www.icegif.com/wp-content/uploads/2024/05/fireworks-icegif-7.gif');
+      background-size: cover;
+      z-index: 10;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .explosion-animate {
+      animation: fadeBlast 1s ease-in-out forwards;
+    }
+
+    @keyframes fadeBlast {
+      0% { opacity: 0; }
+      50% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    .wish {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 40px;
+      margin: 30px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+      max-width: 90%;
+      animation: fadeZoomIn 1.5s ease forwards;
+      z-index: 2;
+      background: linear-gradient(to bottom right, #f8bbd0, #ffccbc);
+      border: 5px solid #ff80ab;
+      box-sizing: border-box;
+    }
+
+    @keyframes fadeZoomIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .wish h1 {
+      font-size: 2.5em;
+      color: #e91e63;
+      margin-bottom: 15px;
+      font-weight: bold;
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .wish p {
+      font-size: 1.3em;
+      color: #9c27b0;
+      margin: 10px 0;
+      line-height: 1.6;
+    }
+
+    .heart {
+      font-size: 3em;
+      animation: heartbeat 1.5s infinite;
+      color: red;
+      margin: 20px 0;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+    }
+
+    .wish img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 5px solid #fff;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      margin-bottom: 20px;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .wish .sparkles {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 2em;
+      color: #ff4081;
+      animation: sparkle 1s ease-in-out infinite;
+    }
+
+    @keyframes sparkle {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.1); }
+    }
+
+    audio {
+      display: none;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 600px) {
+      .gift-box {
+        width: 120px;
+        height: 120px;
+      }
+
+      .wish {
+        padding: 20px;
+        margin: 20px;
+      }
+
+      .wish h1 {
+        font-size: 1.8em;
+      }
+
+      .wish p {
+        font-size: 1.1em;
+      }
+
+      .wish img {
+        width: 100px;
+        height: 100px;
+      }
+
+      .heart {
+        font-size: 2.5em;
+      }
+
+      .sparkles {
+        font-size: 1.5em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="giftbox-page" id="main">
+  <div class="gift-box" onclick="openGift()" id="gift"></div>
+  <p class="click-text" id="clickText">🎁 Click the gift box for your surprise!</p>
+</div>
+
+<div class="explosion-bg" id="explosionBg"></div>
+
+<div class="wish" id="wish">
+  <img src="mount.jpg" alt="Your Image">
+  <h1>🌸 සුභ අලුත් අවුරුද්දක් වේවා, සෙරිනා! 🌸</h1>
+  <p>ඔයා මට ලැබුණු ලොකුම තෑග්ගයි 🥰</p>
+  <p>අලුත් අවුරුද්දේ හැම දවසකම ආදරෙන්, සතුටින්, හිනාවෙන් පිරෙන්න කියලා හදවතින්ම ප්‍රාර්ථනා කරනවා 😘</p>
+  <p>ඔයා මගේ ලෝකෙම 💛</p>
+  <div class="heart">❤️</div>
+  <p>– ඔයාගේ සන්දු 💌</p>
+  <div class="sparkles">✨</div>
+</div>
+
+<audio id="bg-music" autoplay loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-sunny.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  function openGift() {
+    document.getElementById('gift').style.display = 'none';
+    document.getElementById('clickText').style.display = 'none';
+
+    const explosion = document.getElementById('explosionBg');
+    explosion.style.display = 'block';
+    explosion.classList.add('explosion-animate');
+
+    setTimeout(() => {
+      explosion.style.display = 'none';
+      document.getElementById('main').style.display = 'none';
+      const wish = document.getElementById('wish');
+      wish.style.display = 'flex';
+      document.getElementById('bg-music').play();
+    }, 1000);
+  }
+</script>
+
+</body>
+</html>
