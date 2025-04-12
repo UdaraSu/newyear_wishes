@@ -3,17 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <title>🎁 Awurudu Surprise</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       font-family: 'Noto Sans Sinhala', sans-serif;
       background: linear-gradient(to bottom right, #fff8e1, #ffebee);
       margin: 0;
       padding: 0;
-      min-height: 100vh;
+      height: 100vh;
       overflow-x: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       background-image: url('https://www.icegif.com/wp-content/uploads/2023/11/icegif-142.gif');
       background-size: cover;
       background-position: center;
@@ -24,33 +31,33 @@
       min-height: 100vh;
       width: 100%;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 5vw 30px;
+      flex-direction: column;
+      padding: 5vw;
       text-align: center;
     }
 
     .gift-box {
-      width: 180px;
-      height: 180px;
+      width: 35vw;
+      max-width: 200px;
+      aspect-ratio: 1 / 1;
       background-image: url('https://parspng.com/wp-content/uploads/2022/02/giftboxpng.parspng.com-8.png');
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
-      margin: 0 auto;
       animation: bounce 2s infinite;
       cursor: pointer;
     }
 
     @keyframes bounce {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
+      50% { transform: translateY(-3vh); }
     }
 
     .click-text {
-      margin-top: 20px;
-      font-size: 1.2em;
+      margin-top: 4vh;
+      font-size: 1.5em;
       color: #6a1b9a;
       animation: pulse 1.5s infinite;
     }
@@ -89,13 +96,13 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 5vw 30px;
-      margin: 30px auto;
-      max-width: 90vw;
+      padding: 5vw;
+      margin: 30px;
       background: linear-gradient(to bottom right, #f8bbd0, #ffccbc);
       border: 5px solid #ff80ab;
       border-radius: 20px;
       box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+      max-width: 90vw;
       animation: fadeZoomIn 1.5s ease forwards;
       z-index: 2;
     }
@@ -105,19 +112,27 @@
       to { opacity: 1; transform: scale(1); }
     }
 
+    .wish img {
+      width: 30vw;
+      max-width: 150px;
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      border: 5px solid #fff;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      margin-bottom: 20px;
+    }
+
     .wish h1 {
-      font-size: 2em;
+      font-size: 2.2em;
       color: #e91e63;
-      margin-bottom: 15px;
-      font-weight: bold;
-      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+      margin-bottom: 10px;
     }
 
     .wish p {
       font-size: 1.2em;
       color: #9c27b0;
       margin: 10px 0;
-      line-height: 1.6;
+      line-height: 0.5;
     }
 
     .heart {
@@ -130,21 +145,6 @@
     @keyframes heartbeat {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.3); }
-    }
-
-    .wish img {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      border: 5px solid #fff;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-      margin-bottom: 20px;
-      animation: fadeIn 1.5s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
     }
 
     .sparkles {
@@ -166,11 +166,10 @@
       display: none;
     }
 
-    /* Make sure it looks good on small devices */
+    /* EXTRA Responsive Tuning */
     @media (max-width: 480px) {
-      .gift-box {
-        width: 130px;
-        height: 130px;
+      .click-text {
+        font-size: 1.2em;
       }
 
       .wish h1 {
@@ -181,57 +180,70 @@
         font-size: 1em;
       }
 
+      .gift-box {
+        width: 50vw;
+      }
+
+      .wish img {
+        width: 100px;
+      }
+
       .heart {
         font-size: 2em;
+      }
+
+      .sparkles {
+        font-size: 1.3em;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Giftbox Page with Light Pink Background -->
-  <div class="giftbox-page" id="main">
-    <div class="gift-box" onclick="openGift()" id="gift"></div>
-    <p class="click-text" id="clickText">🎁 Click the gift box for your surprise!</p>
-  </div>
+<div class="giftbox-page" id="main">
+  <div class="gift-box" onclick="openGift()" id="gift"></div>
+  <p class="click-text" id="clickText">🎁 Click the gift box for your surprise!</p>
+</div>
 
-  <!-- Explosion Background GIF -->
-  <div class="explosion-bg" id="explosionBg"></div>
+<div class="explosion-bg" id="explosionBg"></div>
 
-  <!-- Wish Page -->
-  <div class="wish" id="wish">
-    <img src="mount.jpg" alt="Your Image">
-    <h1>🌸 සුභ අලුත් අවුරුද්දක් වේවා, සෙරිනා! 🌸</h1>
-    <p>ඔයා මට ලැබුණු ලොකුම තෑග්ගයි 🥰</p>
-    <p>අලුත් අවුරුද්දේ හැම දවසකම ආදරෙන්, සතුටින්, හිනාවෙන් පිරෙන්න කියලා හදවතින්ම ප්‍රාර්ථනා කරනවා 😘</p>
-    <p>ඔයා මගේ ලෝකෙම 💛</p>
-    <div class="heart">❤️</div>
-    <p>– ඔයාගේ සන්දු 💌</p>
-    <div class="sparkles">✨</div>
-  </div>
+<div class="wish" id="wish">
+  <img src="su.jpeg" alt="Your Image">
+  <h1>🌸 Wish You Happy New Year, My Cute Princess! 🌸</h1>
+  <p>ඔයා තමයි මට ලැබුන වටිනම තෑග්ග 🥺💖🧸💍</p>
+  <p>ගිය අවුරුද්දේ මේ අවුරුද්දේ වගේම ලබන හැම අවුරුද්දකම අපි දෙන්නා ආදරෙන් ඉමු🥺🥺💖💖🥰🥰💍💍</p>
+  <p>අපි දෙන්නාට ඉක්මනටම දවසක එකට අවුරුදු සමරන්න පුලුවන් වෙයි🥺🥺🥰🥰💖💖🧸🧸💍💍</p>
+<p>I Love You Soo Much More Than You Think</p>
+<p>My Cute Pretty Lovely Patiyo🥺🥺💖💖🥰🥰🧸🧸💍💍</p>
 
-  <audio id="bg-music" autoplay loop>
-    <source src="https://www.bensound.com/bensound-music/bensound-sunn.mp3" type="audio/mpeg">
-  </audio>
 
-  <script>
-    function openGift() {
-      document.getElementById('gift').style.display = 'none';
-      document.getElementById('clickText').style.display = 'none';
+  <div class="heart">❤️</div>
+  <p>– From Buu Baba🐧💖 To Buu Babi🐋💖</p>
+  <div class="sparkles">✨</div>
+</div>
 
-      const explosion = document.getElementById('explosionBg');
-      explosion.style.display = 'block';
-      explosion.classList.add('explosion-animate');
+<audio id="bg-music" autoplay loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-sunn.mp3" type="audio/mpeg">
+</audio>
 
-      setTimeout(() => {
-        explosion.style.display = 'none';
-        document.getElementById('main').style.display = 'none';
-        const wish = document.getElementById('wish');
-        wish.style.display = 'flex';
-        document.getElementById('bg-music').play();
-      }, 1000);
-    }
-  </script>
+<script>
+  function openGift() {
+    document.getElementById('gift').style.display = 'none';
+    document.getElementById('clickText').style.display = 'none';
+
+    const explosion = document.getElementById('explosionBg');
+    explosion.style.display = 'block';
+    explosion.classList.add('explosion-animate');
+
+    setTimeout(() => {
+      explosion.style.display = 'none';
+      document.getElementById('main').style.display = 'none';
+      const wish = document.getElementById('wish');
+      wish.style.display = 'flex';
+      document.getElementById('bg-music').play();
+    }, 1000);
+  }
+</script>
 
 </body>
 </html>
